@@ -2,6 +2,7 @@ import { Memoize } from "typescript-memoize";
 
 export class Category {
 	public static readonly PLAYER = new Category("Player");
+	public static readonly MISC = new Category("Miscellaneous");
 
 	@Memoize()
 	public static get values(): Category[] {

@@ -1,6 +1,9 @@
 import "reflect-metadata";
+import "./styles/styles.scss";
 import { init } from "./init";
 import "./types/_";
+
+document.querySelectorAll("style[data-styled-version]").forEach(x => x.remove());
 
 let loadingTicker = 0;
 

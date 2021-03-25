@@ -15,6 +15,22 @@ module.exports = {
 				use: ["babel-loader", "ts-loader"],
 				exclude: /node_modules/,
 			},
+			{
+				test: /\.s[ac]ss$/i,
+				use: [
+					"style-loader",
+					"css-loader",
+					{
+						loader: "postcss-loader",
+						options: {
+							postcssOptions: {
+								plugins: ["postcss-preset-env"],
+							},
+						},
+					},
+					"sass-loader",
+				],
+			},
 		],
 	},
 	resolve: {
@@ -28,5 +44,5 @@ module.exports = {
 		filename: "bundle.js",
 		path: path.resolve(__dirname, "dist"),
 	},
-	mode: "production"
+	mode: "production",
 };

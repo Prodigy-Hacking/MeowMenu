@@ -1,3 +1,4 @@
+import { addOnInit } from "../init";
 import { Category } from "./category";
 import { registerHack } from "./store";
 
@@ -6,7 +7,9 @@ const hackMetadataKey = Symbol("hack:metadata");
 export interface HackMetadata {
 	category: Category;
 	name: string;
-	params: string[];
+	params: (string | undefined)[];
+	paramTypes: unknown[];
+	type: "button" | "toggle";
 }
 
 export const HackGroup: ClassDecorator = clazz => {
@@ -17,20 +20,32 @@ export const HackGroup: ClassDecorator = clazz => {
 	}
 };
 interface HackDecorator {
-	(opts: { category: Category; name: string; params?: string[] }): MethodDecorator;
-	(category: Category, name: string, params?: string[]): MethodDecorator;
+	(opts: Partial<HackMetadata>): MethodDecorator;
+	(
+		category: Category,
+		name: string,
+		params?: (string | undefined)[],
+		paramTypes?: unknown[],
+		type?: HackMetadata["type"]
+	): MethodDecorator;
 }
 
-export const Hack: HackDecorator = (opts: {
-    category: Category;
-    name: string;
-    params?: string[] | undefined;
-} | Category, name?: string, params: string[] = []): MethodDecorator => (target, key, desc) => {
+export const Hack: HackDecorator = (
+	opts: Partial<HackMetadata> | Category,
+	name?: string,
+	params: (string | undefined)[] = [],
+	paramTypes: unknown[] = [],
+	type: HackMetadata["type"] = "button"
+): MethodDecorator => (target, key, desc) => {
 	Reflect.defineMetadata(
 		hackMetadataKey,
-		opts instanceof Category ? { category: opts, name, params } : { params, ...opts },
+		opts instanceof Category ? { category: opts, name, params, paramTypes, type } : { params, paramTypes, type, ...opts },
 		target,
 		key
 	);
 	return target;
+};
+
+export const Init = (): MethodDecorator => (target, key, desc) => {
+	addOnInit(target[key as keyof typeof target] as CallableFunction);
 };

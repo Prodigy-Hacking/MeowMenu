@@ -28,7 +28,6 @@ module.exports = {
 	plugins: ["react", "@typescript-eslint"],
 	rules: {
 		eqeqeq: "error",
-		indent: ["error", "tab"],
 		quotes: [
 			"error",
 			"double",
@@ -39,6 +38,8 @@ module.exports = {
 		],
 		semi: ["error", "always"],
 		"no-console": "off",
+		"no-sparse-arrays": "off",
+		"indent": ["warn", "tab", { SwitchCase: 1 }],
 		"@typescript-eslint/explicit-module-boundary-types": "off",
 		"@typescript-eslint/no-empty-function": "off",
 		"@typescript-eslint/no-namespace": "off",
