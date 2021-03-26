@@ -3,8 +3,8 @@ import { Hack, HackGroup } from "../hack/decorators";
 import { success, invalidState } from "../util/swal";
 
 @HackGroup
-export class MiscHacks {
-	@Hack(Category.MISC, "Escape Battle")
+export class BattleHacks {
+	@Hack(Category.BATTLE, "Escape Battle")
 	public escapeBattle(): void {
 		switch (_.instance.game.state.current) {
 			case "PVP":
@@ -20,7 +20,7 @@ export class MiscHacks {
 				return invalidState("You are not currently in a battle.");
 		}
 	}
-	@Hack(Category.MISC, "Win Battle")
+	@Hack(Category.BATTLE, "Win Battle")
 	public winBattle(): void {
 		switch (_.instance.game.state.current) {
 			case "PVP":
@@ -42,7 +42,7 @@ export class MiscHacks {
 				return invalidState("You are not in a battle.");
 		}
 	}
-	@Hack(Category.MISC, "Fill Energy")
+	@Hack(Category.BATTLE, "Fill Energy")
 	public fillEnergy(): void {
 		const state = _.instance.game.state.getCurrentState() as Record<"teams", Record<"setEnergy", CallableFunction>[]>;
 		if (!("teams" in state)) return invalidState("You are currently not in a battle.");

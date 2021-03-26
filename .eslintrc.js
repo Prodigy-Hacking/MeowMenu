@@ -10,6 +10,7 @@ module.exports = {
 		"plugin:import/errors",
 		"plugin:import/warnings",
 		"plugin:import/typescript",
+        "plugin:clean-regex/recommended",
 	],
 	parser: "@typescript-eslint/parser",
 	parserOptions: {
@@ -25,7 +26,7 @@ module.exports = {
 			version: "latest",
 		},
 	},
-	plugins: ["react", "@typescript-eslint"],
+	plugins: ["react", "@typescript-eslint", "clean-regex"],
 	rules: {
 		eqeqeq: "error",
 		quotes: [

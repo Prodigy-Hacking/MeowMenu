@@ -16,7 +16,7 @@ export class HToggle extends HButton<
 		toggled: false,
 	};
 	public async execute(...prepend: unknown[]): Promise<void> {
-		this.setState({ ...this.state, toggled: !this.state.toggled });
+		this.setState(state => ({ ...state, toggled: !state.toggled }));
 		return super.execute(!this.state.toggled);
 	}
 	public render(): JSX.Element {

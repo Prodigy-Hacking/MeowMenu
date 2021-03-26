@@ -81,5 +81,6 @@ export class PlayerHacks {
 		if (toggle) this.damageModifier = _.player.modifiers.damage;
 		_.player.modifiers.damage = toggle ? LARGE_NUMBER : this.damageModifier ?? 1;
 	}
+
 	
 }
