@@ -4,7 +4,7 @@
 	"description": "meow",
 	"main": ".eslintrc.js",
 	"scripts": {
-		"build": "node build"
+		"build": "npx webpack --config webpack.config.js"
 	},
 	"dependencies": {
 		"@types/react-redux": "^7.1.16",
